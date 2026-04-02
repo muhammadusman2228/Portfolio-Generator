@@ -1,13 +1,15 @@
-// ══════════════════════════════════════════════════════════════
-//  Portfolio Generator — Theme Templates
-//  Each theme returns a full HTML string for the iframe preview
-// ══════════════════════════════════════════════════════════════
 
 const PortfolioThemes = {
 
-  /* ── Theme 1: Dark Neon ── */
   dark(data) {
-    const { name='', title='', bio='', skills=[], projects=[], social={} } = data;
+    const {
+      name = "",
+      title = "",
+      bio = "",
+      skills = [],
+      projects = [],
+      social = {},
+    } = data;
     return `<!DOCTYPE html><html><head>
 <meta charset="UTF-8"/>
 <style>
@@ -46,7 +48,7 @@ const PortfolioThemes = {
   footer{text-align:center;padding:30px;border-top:1px solid rgba(255,255,255,0.05);color:#64748b;font-size:0.85rem;}
 </style></head><body>
 <nav>
-  <span class="logo">${name || 'Portfolio'}</span>
+  <span class="logo">${name || "Portfolio"}</span>
   <div class="nav-links">
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
@@ -57,22 +59,22 @@ const PortfolioThemes = {
 <div class="hero">
   <div class="hero-text">
     <div class="tag">👋 Available for hire</div>
-    <h1>Hi, I'm <span>${name || 'Your Name'}</span></h1>
-    <p class="subtitle">${title || 'Developer & Creator'}</p>
-    <p class="bio">${bio || 'Add your bio in the form to see it here.'}</p>
+    <h1>Hi, I'm <span>${name || "Your Name"}</span></h1>
+    <p class="subtitle">${title || "Developer & Creator"}</p>
+    <p class="bio">${bio || "Add your bio in the form to see it here."}</p>
     <div class="hero-btns">
       <a href="#projects" class="btn-main">View My Work</a>
       <a href="#contact" class="btn-out">Contact Me</a>
     </div>
   </div>
-  <div class="avatar">${(name||'U').charAt(0).toUpperCase()}</div>
+  <div class="avatar">${(name || "U").charAt(0).toUpperCase()}</div>
 </div>
 
 <section id="skills" style="background:#0d0d1a;">
   <div class="sec-title">What I Know</div>
   <h2>My Skills</h2>
   <div class="skills-wrap">
-    ${skills.length ? skills.map(s=>`<span class="skill">${s}</span>`).join('') : '<span class="skill" style="opacity:0.4">Add skills in the form...</span>'}
+    ${skills.length ? skills.map((s) => `<span class="skill">${s}</span>`).join("") : '<span class="skill" style="opacity:0.4">Add skills in the form...</span>'}
   </div>
 </section>
 
@@ -80,13 +82,25 @@ const PortfolioThemes = {
   <div class="sec-title">What I've Built</div>
   <h2>Projects</h2>
   <div class="projects-grid">
-    ${projects.length ? projects.map(p=>`
+    ${
+      projects.length
+        ? projects
+            .map(
+              (p) => `
       <div class="proj-card">
-        <h3>${p.name||'Project Name'}</h3>
-        <p>${p.desc||'Project description'}</p>
-        <div class="proj-tech">${(p.tech||'').split(',').filter(t=>t.trim()).map(t=>`<span class="tech-tag">${t.trim()}</span>`).join('')}</div>
-        ${p.link?`<a href="${p.link}" style="display:inline-block;margin-top:12px;color:#7c3aed;font-size:0.85rem;font-weight:600;">View Project →</a>`:''}
-      </div>`).join('') : `<div class="proj-card"><h3 style="opacity:0.4">Add projects in the form...</h3></div>`}
+        <h3>${p.name || "Project Name"}</h3>
+        <p>${p.desc || "Project description"}</p>
+        <div class="proj-tech">${(p.tech || "")
+          .split(",")
+          .filter((t) => t.trim())
+          .map((t) => `<span class="tech-tag">${t.trim()}</span>`)
+          .join("")}</div>
+        ${p.link ? `<a href="${p.link}" style="display:inline-block;margin-top:12px;color:#7c3aed;font-size:0.85rem;font-weight:600;">View Project →</a>` : ""}
+      </div>`,
+            )
+            .join("")
+        : `<div class="proj-card"><h3 style="opacity:0.4">Add projects in the form...</h3></div>`
+    }
   </div>
 </section>
 
@@ -94,21 +108,28 @@ const PortfolioThemes = {
   <div class="sec-title">Get in Touch</div>
   <h2>Contact</h2>
   <div class="social-row">
-    ${social.github?`<a class="slink" href="https://${social.github}">💻 GitHub</a>`:''}
-    ${social.linkedin?`<a class="slink" href="https://${social.linkedin}">🔗 LinkedIn</a>`:''}
-    ${social.twitter?`<a class="slink" href="https://${social.twitter}">🐦 Twitter/X</a>`:''}
-    ${social.email?`<a class="slink" href="mailto:${social.email}">✉️ Email</a>`:''}
-    ${!social.github&&!social.linkedin&&!social.twitter&&!social.email?'<p style="color:#64748b">Add social links in the form...</p>':''}
+    ${social.github ? `<a class="slink" href="https://${social.github}">💻 GitHub</a>` : ""}
+    ${social.linkedin ? `<a class="slink" href="https://${social.linkedin}">🔗 LinkedIn</a>` : ""}
+    ${social.twitter ? `<a class="slink" href="https://${social.twitter}">🐦 Twitter/X</a>` : ""}
+    ${social.email ? `<a class="slink" href="mailto:${social.email}">✉️ Email</a>` : ""}
+    ${!social.github && !social.linkedin && !social.twitter && !social.email ? '<p style="color:#64748b">Add social links in the form...</p>' : ""}
   </div>
 </section>
 
-<footer>Built with PortfolioForge · ${name || 'Your Name'} ${new Date().getFullYear()}</footer>
+<footer>Built with PortfolioForge · ${name || "Your Name"} ${new Date().getFullYear()}</footer>
 </body></html>`;
   },
 
-  /* ── Theme 2: Light Minimal ── */
+ 
   light(data) {
-    const { name='', title='', bio='', skills=[], projects=[], social={} } = data;
+    const {
+      name = "",
+      title = "",
+      bio = "",
+      skills = [],
+      projects = [],
+      social = {},
+    } = data;
     return `<!DOCTYPE html><html><head>
 <meta charset="UTF-8"/>
 <style>
@@ -141,15 +162,15 @@ const PortfolioThemes = {
   footer{text-align:center;padding:28px;border-top:1px solid #e5e7eb;color:#9ca3af;font-size:0.84rem;}
 </style></head><body>
 <nav>
-  <span class="logo">${name||'Portfolio'}</span>
+  <span class="logo">${name || "Portfolio"}</span>
   <div><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
 </nav>
 
 <div class="hero">
-  <div class="avatar">${(name||'U').charAt(0).toUpperCase()}</div>
-  <h1>${name||'Your Name'}</h1>
-  <p class="subtitle">${title||'Developer & Creator'}</p>
-  <p class="bio">${bio||'Add your bio in the form to see it here.'}</p>
+  <div class="avatar">${(name || "U").charAt(0).toUpperCase()}</div>
+  <h1>${name || "Your Name"}</h1>
+  <p class="subtitle">${title || "Developer & Creator"}</p>
+  <p class="bio">${bio || "Add your bio in the form to see it here."}</p>
   <div class="btns">
     <a href="#projects" class="bm">View Work</a>
     <a href="#contact" class="bo">Contact</a>
@@ -158,39 +179,58 @@ const PortfolioThemes = {
 
 <section id="skills"><h2>Skills</h2><div class="divider"></div>
   <div class="skills-wrap">
-    ${skills.length?skills.map(s=>`<span class="skill">${s}</span>`).join(''):'<span class="skill" style="opacity:0.4">Add skills...</span>'}
+    ${skills.length ? skills.map((s) => `<span class="skill">${s}</span>`).join("") : '<span class="skill" style="opacity:0.4">Add skills...</span>'}
   </div>
 </section>
 
 <section id="projects"><h2>Projects</h2><div class="divider"></div>
   <div class="projects-grid">
-    ${projects.length?projects.map(p=>`
+    ${
+      projects.length
+        ? projects
+            .map(
+              (p) => `
       <div class="proj">
-        <h3>${p.name||'Project'}</h3>
-        <p>${p.desc||''}</p>
-        ${(p.tech||'').split(',').filter(t=>t.trim()).map(t=>`<span class="tech-tag">${t.trim()}</span>`).join('')}
-        ${p.link?`<br/><a href="${p.link}" style="color:#6366f1;font-size:0.85rem;font-weight:600;display:inline-block;margin-top:10px;">View →</a>`:''}
-      </div>`).join(''):`<div class="proj"><h3 style="opacity:0.4">Add projects...</h3></div>`}
+        <h3>${p.name || "Project"}</h3>
+        <p>${p.desc || ""}</p>
+        ${(p.tech || "")
+          .split(",")
+          .filter((t) => t.trim())
+          .map((t) => `<span class="tech-tag">${t.trim()}</span>`)
+          .join("")}
+        ${p.link ? `<br/><a href="${p.link}" style="color:#6366f1;font-size:0.85rem;font-weight:600;display:inline-block;margin-top:10px;">View →</a>` : ""}
+      </div>`,
+            )
+            .join("")
+        : `<div class="proj"><h3 style="opacity:0.4">Add projects...</h3></div>`
+    }
   </div>
 </section>
 
 <section id="contact"><h2>Contact</h2><div class="divider"></div>
   <div class="slinks">
-    ${social.github?`<a class="sl" href="https://${social.github}">💻 GitHub</a>`:''}
-    ${social.linkedin?`<a class="sl" href="https://${social.linkedin}">🔗 LinkedIn</a>`:''}
-    ${social.twitter?`<a class="sl" href="https://${social.twitter}">🐦 Twitter</a>`:''}
-    ${social.email?`<a class="sl" href="mailto:${social.email}">✉️ Email</a>`:''}
-    ${!social.github&&!social.linkedin&&!social.twitter&&!social.email?'<p style="color:#9ca3af">Add social links...</p>':''}
+    ${social.github ? `<a class="sl" href="https://${social.github}">💻 GitHub</a>` : ""}
+    ${social.linkedin ? `<a class="sl" href="https://${social.linkedin}">🔗 LinkedIn</a>` : ""}
+    ${social.twitter ? `<a class="sl" href="https://${social.twitter}">🐦 Twitter</a>` : ""}
+    ${social.email ? `<a class="sl" href="mailto:${social.email}">✉️ Email</a>` : ""}
+    ${!social.github && !social.linkedin && !social.twitter && !social.email ? '<p style="color:#9ca3af">Add social links...</p>' : ""}
   </div>
 </section>
 
-<footer>© ${new Date().getFullYear()} ${name||'Portfolio'} · Built with PortfolioForge</footer>
+<footer>© ${new Date().getFullYear()} ${name || "Portfolio"} · Built with PortfolioForge</footer>
 </body></html>`;
   },
 
-  /* ── Theme 3: Gradient Bold ── */
+ 
   gradient(data) {
-    const { name='', title='', bio='', skills=[], projects=[], social={} } = data;
+    const {
+      name = "",
+      title = "",
+      bio = "",
+      skills = [],
+      projects = [],
+      social = {},
+    } = data;
     return `<!DOCTYPE html><html><head>
 <meta charset="UTF-8"/>
 <style>
@@ -221,47 +261,59 @@ const PortfolioThemes = {
   footer{text-align:center;padding:28px;border-top:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);font-size:0.84rem;}
 </style></head><body>
 <nav>
-  <span class="logo">✦ ${name||'Portfolio'}</span>
+  <span class="logo">✦ ${name || "Portfolio"}</span>
   <div><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
 </nav>
 
 <div class="hero">
-  <div class="glow-circle">${(name||'U').charAt(0).toUpperCase()}</div>
-  <h1>I'm <em>${name||'Your Name'}</em></h1>
-  <p class="subtitle">${title||'Developer & Creator'}</p>
-  <p class="bio">${bio||'Add your bio in the form to see it here.'}</p>
+  <div class="glow-circle">${(name || "U").charAt(0).toUpperCase()}</div>
+  <h1>I'm <em>${name || "Your Name"}</em></h1>
+  <p class="subtitle">${title || "Developer & Creator"}</p>
+  <p class="bio">${bio || "Add your bio in the form to see it here."}</p>
   <a href="#projects" class="bm">✨ See My Work</a>
 </div>
 
 <section id="skills"><h2>⚡ Skills</h2>
   <div class="skills-wrap">
-    ${skills.length?skills.map(s=>`<span class="skill">${s}</span>`).join(''):'<span class="skill" style="opacity:0.4">Add skills...</span>'}
+    ${skills.length ? skills.map((s) => `<span class="skill">${s}</span>`).join("") : '<span class="skill" style="opacity:0.4">Add skills...</span>'}
   </div>
 </section>
 
 <section id="projects"><h2>🚀 Projects</h2>
   <div class="projects-grid">
-    ${projects.length?projects.map(p=>`
+    ${
+      projects.length
+        ? projects
+            .map(
+              (p) => `
       <div class="proj">
-        <h3>${p.name||'Project'}</h3>
-        <p>${p.desc||''}</p>
-        ${(p.tech||'').split(',').filter(t=>t.trim()).map(t=>`<span class="tech-tag">${t.trim()}</span>`).join('')}
-        ${p.link?`<br/><a href="${p.link}" style="color:#f0abfc;font-size:0.85rem;font-weight:600;display:inline-block;margin-top:10px;">View →</a>`:''}
-      </div>`).join(''):`<div class="proj"><h3 style="opacity:0.4">Add projects...</h3></div>`}
+        <h3>${p.name || "Project"}</h3>
+        <p>${p.desc || ""}</p>
+        ${(p.tech || "")
+          .split(",")
+          .filter((t) => t.trim())
+          .map((t) => `<span class="tech-tag">${t.trim()}</span>`)
+          .join("")}
+        ${p.link ? `<br/><a href="${p.link}" style="color:#f0abfc;font-size:0.85rem;font-weight:600;display:inline-block;margin-top:10px;">View →</a>` : ""}
+      </div>`,
+            )
+            .join("")
+        : `<div class="proj"><h3 style="opacity:0.4">Add projects...</h3></div>`
+    }
   </div>
 </section>
 
 <section id="contact"><h2>🤝 Contact</h2>
   <div class="slinks">
-    ${social.github?`<a class="sl" href="https://${social.github}">💻 GitHub</a>`:''}
-    ${social.linkedin?`<a class="sl" href="https://${social.linkedin}">🔗 LinkedIn</a>`:''}
-    ${social.twitter?`<a class="sl" href="https://${social.twitter}">🐦 Twitter</a>`:''}
-    ${social.email?`<a class="sl" href="mailto:${social.email}">✉️ Email</a>`:''}
-    ${!social.github&&!social.linkedin&&!social.twitter&&!social.email?'<p style="color:rgba(255,255,255,0.3)">Add social links...</p>':''}
+    ${social.github ? `<a class="sl" href="https://${social.github}">💻 GitHub</a>` : ""}
+    ${social.linkedin ? `<a class="sl" href="https://${social.linkedin}">🔗 LinkedIn</a>` : ""}
+    ${social.twitter ? `<a class="sl" href="https://${social.twitter}">🐦 Twitter</a>` : ""}
+    ${social.email ? `<a class="sl" href="mailto:${social.email}">✉️ Email</a>` : ""}
+    ${!social.github && !social.linkedin && !social.twitter && !social.email ? '<p style="color:rgba(255,255,255,0.3)">Add social links...</p>' : ""}
   </div>
 </section>
 
-<footer>✦ ${name||'Portfolio'} · Built with PortfolioForge · ${new Date().getFullYear()}</footer>
+<footer>✦ ${name || "Portfolio"} · Built with PortfolioForge · ${new Date().getFullYear()}</footer>
 </body></html>`;
-  }
+  },
 };
